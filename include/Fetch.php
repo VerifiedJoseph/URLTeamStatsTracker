@@ -19,7 +19,7 @@ class Fetch {
 		$curl->get($url);
 
 		if ($curl->getCurlErrorCode() !== 0) {
-			throw new Exception('Error: ' . $curl->getCurlErrorCode() . ': ' . $curl->errorMessage);
+			throw new Exception('Error: ' . $curl->getCurlErrorCode() . ': ' . $curl->getErrorMessage());
 		}
 
 		if ($curl->getHttpStatusCode() !== 200) {
