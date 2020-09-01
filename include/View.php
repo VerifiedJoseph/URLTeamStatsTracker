@@ -40,7 +40,7 @@ class View extends Action {
 			$climate = new League\CLImate\CLImate;
 			$climate->table($table);
 		} else {
-			echo 'No data to display';
+			output('No data to display');
 		}
 	}
 }
