@@ -1,6 +1,10 @@
 <?php
 
 class View extends Action {
+
+	/**
+	 * Get view
+	 */
 	public function get() {
 		$data = new Data();
 		$data->setPath($this->username, $this->type);
@@ -11,6 +15,11 @@ class View extends Action {
 		);
 	}
 
+	/**
+	 * Create table using CLImate
+	 *
+	 * @param array $data Data from file
+	 */
 	private function createTable(array $data) {
 		$table = array();
 
