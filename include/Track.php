@@ -1,6 +1,10 @@
 <?php
 
 class Track extends Action {
+	
+	/**
+	 * Run tracker
+	 */
 	public function run() {
 		$data = new Data();
 		$data->setPath($this->username, $this->type);
