@@ -84,6 +84,7 @@ class Data {
 		);
 		$this->data['data'][] = $item;
 
+		$this->trim();
 		$this->save();
 	}
 
