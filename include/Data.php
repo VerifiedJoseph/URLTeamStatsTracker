@@ -10,6 +10,9 @@ class Data {
 		'data' => array()
 	);
 
+	/** @param string $type Update type */
+	private string $type = '';
+
 	/**
 	 * Load and decode data
 	 *
@@ -17,6 +20,7 @@ class Data {
 	 * @param string $type Update type
 	 */
 	public function setPath(string $username, string $type) {
+		$this->type = $type;
 		$this->path = 'json/' . $username . '-' . $type . '.json';
 	}
 
