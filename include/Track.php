@@ -1,7 +1,7 @@
 <?php
 
 class Track extends Action {
-	
+
 	/**
 	 * Run tracker
 	 */
@@ -10,15 +10,30 @@ class Track extends Action {
 		$data->setPath($this->username, $this->type);
 		$data->load();
 
-		$tdateTime = date($this->dateFormats[$this->type]);
-
 		$fetch = new Fetch();
 		$stats = $fetch->stats($this->username);
 
 		$data->update(
-			$tdateTime,
+			$this->getDate(),
 			$stats->stats[0],
 			$stats->stats[1]
 		);
+	}
+
+	/**
+	 * Returns formated date
+	 *
+	 * @return string
+	 */
+	private function getDate() {
+
+		if ($this->type === 'monthly') {
+			return date(
+				$this->dateFormats[$this->type],
+				strtotime('-1 month')
+			);
+		}
+
+		return date($this->dateFormats[$this->type]);
 	}
 }
