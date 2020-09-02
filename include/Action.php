@@ -1,6 +1,11 @@
 <?php
 
+use League\CLImate\CLImate;
+
 abstract class Action {
+
+	/** @var object $climate CLImate instance */
+	protected CLImate $climate;
 
 	/** @var array $updateTypes Update types */
 	protected array $updateTypes = array('hourly', 'daily', 'monthly');
@@ -17,6 +22,13 @@ abstract class Action {
 
 	/** @param string $type Update type */
 	protected string $type = '';
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->climate = new CLImate();
+	}
 
 	/**
 	 * Set username

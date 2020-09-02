@@ -10,12 +10,15 @@
 	--monthly
 */
 
+use League\CLImate\CLImate;
+
 include 'autoload.php';
 require __DIR__ . '/vendor/autoload.php';
 
 include 'include/output.php';
 
 try {
+	$climate = new CLImate();
 	$arguments = new Arguments();
 
 	$view = new View();
@@ -30,5 +33,5 @@ try {
 	$view->get();
 
 } catch (Exception $e) {
-	output($e->getMessage());
+	$climate->out($e->getMessage());
 }

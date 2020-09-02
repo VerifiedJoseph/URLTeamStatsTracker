@@ -42,8 +42,7 @@ class View extends Action {
 			$table[] = $item;
 		}
 
-		$climate = new League\CLImate\CLImate;
-		$climate->table($table);
+		$this->climate->table($table);
 	}
 
 	/**
@@ -61,8 +60,6 @@ class View extends Action {
 		$foundAverage = floor($found / $itemCount);
 		$scannedAverage = floor($scanned / $itemCount);
 
-		output('');
-
 		$columns = array(
 			'Scanned: ' . number_format($scanned),
 			'Found: ' . number_format($found),
@@ -70,7 +67,7 @@ class View extends Action {
 			'Average: ' . number_format($foundAverage),
 		);
 
-		$climate = new League\CLImate\CLImate;
-		$climate->columns($columns, 2);
+		$this->climate->br();
+		$this->climate->columns($columns, 2);
 	}
 }
