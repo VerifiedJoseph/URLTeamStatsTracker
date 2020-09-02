@@ -88,6 +88,29 @@ class Data {
 	}
 
 	/**
+	 * Trim data array to most recent items per type
+	 */
+	private function trim() {
+		$maxHourlyItems = 24;
+		$maxDailyItems = 30;
+		$maxItems = 0;
+
+		if ($this->type === 'hourly') {
+			$maxItems = $maxHourlyItems;
+		}
+
+		if ($this->type === 'daily') {
+			$maxItems = $maxDailyItems;
+		}
+
+		if (count($this->data['data']) > $maxItems)  {
+			unset($this->data['data'][0]);
+
+			$this->data['data'] = array_values($this->data['data']);
+		}
+	}
+	
+	/**
 	 * Save data to file
 	 *
 	 * @throws Exception If file open failed
