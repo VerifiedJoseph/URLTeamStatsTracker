@@ -24,7 +24,7 @@ class View extends Action {
 		$table = array();
 
 		if (empty($data['data']) === false) {
-			foreach ($data['data'] as $index => $item) {
+			foreach($data['data'] as $index => $item) {
 				$item['totalFound'] = number_format($item['totalFound']);
 				$item['found'] = number_format($item['found']);
 				$item['totalScanned'] = number_format($item['totalScanned']);
