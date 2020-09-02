@@ -3,12 +3,13 @@
 abstract class Action {
 
 	/** @var array $updateTypes Update types */
-	protected array $updateTypes = array('hourly', 'daily');
+	protected array $updateTypes = array('hourly', 'daily', 'monthly');
 
 	/** @var array $dateFormats Date formats for update types */
 	protected array $dateFormats = array(
 		'hourly' => 'Y-m-d H',
-		'daily' => 'Y-m-d'
+		'daily' => 'Y-m-d',
+		'monthly' => 'Y-m'
 	);
 
 	/** @param string $username URLTeam username */

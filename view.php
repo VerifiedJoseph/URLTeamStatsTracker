@@ -7,6 +7,7 @@
 	--username
 	--hourly
 	--daily
+	--monthly
 */
 
 include 'autoload.php';

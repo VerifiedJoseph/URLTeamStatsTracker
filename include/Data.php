@@ -94,13 +94,18 @@ class Data {
 	private function trim() {
 		$maxHourlyItems = 24;
 		$maxDailyItems = 30;
-		$maxItems = 0;
+		$maxMonthlyItems = 12;
+		$maxItems = 1;
 
 		if ($this->type === 'hourly') {
 			$maxItems = $maxHourlyItems;
 		}
 
 		if ($this->type === 'daily') {
+			$maxItems = $maxDailyItems;
+		}
+
+		if ($this->type === 'monthly') {
 			$maxItems = $maxDailyItems;
 		}
 

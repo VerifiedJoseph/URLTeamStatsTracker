@@ -3,7 +3,7 @@
 class Arguments {
 
 	/** @var array $optArguments */
-	protected array $optArguments = array('username:', 'hourly', 'daily');
+	protected array $optArguments = array('username:', 'hourly', 'daily', 'monthly');
 
 	/** @var array $arguments */
 	protected array $arguments = array(
@@ -59,8 +59,11 @@ class Arguments {
 		} elseif (isset($this->givenArguments['daily'])) {
 			$this->arguments['update'] = 'daily';
 
+		} elseif (isset($this->givenArguments['monthly'])) {
+			$this->arguments['update'] = 'monthly';
+
 		} else {
-			throw new Exception('No update type given. Use --hourly or --daily');
+			throw new Exception('No update type given. Use --hourly, --daily or --monthly');
 		}
 	}
 }
