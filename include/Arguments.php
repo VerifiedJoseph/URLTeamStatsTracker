@@ -1,5 +1,7 @@
 <?php
 
+use Helper\Validate;
+
 class Arguments {
 
 	/** @var array $optArguments */
@@ -36,6 +38,7 @@ class Arguments {
 	 * Check arguments
 	 *
 	 * @throws Exception If no username argument is given
+	 * @throws Exception If invalid username is given
 	 * @throws Exception If no update type argument is given
 	 */
 	private function checkArguments() {
@@ -43,6 +46,10 @@ class Arguments {
 
 		if (isset($args['username']) === false) {
 			throw new Exception('Username required. Use --username');
+		}
+
+		if (Validate::username($args['username']) === false) {
+			throw new Exception('Invalid username given.');
 		}
 
 		$this->arguments['username'] = $args['username'];
