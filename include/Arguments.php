@@ -11,15 +11,10 @@ class Arguments {
 		'update' => '',
 	);
 
-	/** @var array $givenArguments Arguments passed to the script */
-	private array $givenArguments = array();
-
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->givenArguments = getopt('', $this->optArguments);
-
 		$this->checkArguments();
 	}
 
@@ -44,20 +39,21 @@ class Arguments {
 	 * @throws Exception If no update type argument is given
 	 */
 	private function checkArguments() {
+		$args = getopt('', $this->optArguments);
 
-		if (isset($this->givenArguments['username']) === false) {
+		if (isset($args['username']) === false) {
 			throw new Exception('Username required. Use --username');
 		}
 
-		$this->arguments['username'] = $this->givenArguments['username'];
+		$this->arguments['username'] = $args['username'];
 
-		if (isset($this->givenArguments['hourly'])) {
+		if (isset($args['hourly'])) {
 			$this->arguments['update'] = 'hourly';
 
-		} elseif (isset($this->givenArguments['daily'])) {
+		} elseif (isset($args['daily'])) {
 			$this->arguments['update'] = 'daily';
 
-		} elseif (isset($this->givenArguments['monthly'])) {
+		} elseif (isset($args['monthly'])) {
 			$this->arguments['update'] = 'monthly';
 
 		} else {
