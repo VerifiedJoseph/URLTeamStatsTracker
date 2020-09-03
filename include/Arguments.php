@@ -11,9 +11,6 @@ class Arguments {
 		'update' => '',
 	);
 
-	/** @var array $extraArguments Extra arguments set by child classes */
-	private array $extraArguments = array();
-
 	/** @var array $givenArguments Arguments passed to the script */
 	private array $givenArguments = array();
 
