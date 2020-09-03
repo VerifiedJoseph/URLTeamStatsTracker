@@ -43,7 +43,8 @@ class Arguments {
 	/**
 	 * Check arguments
 	 *
-	 * @throws Exception If no arguments given
+	 * @throws Exception If no username argument is given
+	 * @throws Exception If no update type argument is given
 	 */
 	private function checkArguments() {
 
