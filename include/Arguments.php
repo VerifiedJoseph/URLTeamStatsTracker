@@ -3,19 +3,19 @@
 class Arguments {
 
 	/** @var array $optArguments */
-	protected array $optArguments = array('username:', 'hourly', 'daily', 'monthly');
+	private array $optArguments = array('username:', 'hourly', 'daily', 'monthly');
 
 	/** @var array $arguments */
-	protected array $arguments = array(
+	private array $arguments = array(
 		'username' => '',
 		'update' => '',
 	);
 
 	/** @var array $extraArguments Extra arguments set by child classes */
-	protected array $extraArguments = array();
+	private array $extraArguments = array();
 
 	/** @var array $givenArguments Arguments passed to the script */
-	protected array $givenArguments = array();
+	private array $givenArguments = array();
 
 	/**
 	 * Constructor
@@ -45,7 +45,7 @@ class Arguments {
 	 *
 	 * @throws Exception If no arguments given
 	 */
-	protected function checkArguments() {
+	private function checkArguments() {
 
 		if (isset($this->givenArguments['username']) === false) {
 			throw new Exception('Username required. Use --username');
