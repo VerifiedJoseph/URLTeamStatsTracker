@@ -1,6 +1,10 @@
 <?php
 
-class View extends Action {
+namespace Action;
+
+use Data;
+
+class View extends AbstractAction {
 
 	/**
 	 * Get view

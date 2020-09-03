@@ -10,6 +10,7 @@
 	--monthly
 */
 
+use Action\View;
 use League\CLImate\CLImate;
 
 require __DIR__ . '/autoload.php';

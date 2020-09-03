@@ -1,8 +1,10 @@
 <?php
 
+namespace Action;
+
 use League\CLImate\CLImate;
 
-abstract class Action {
+abstract class AbstractAction {
 
 	/** @var object $climate CLImate instance */
 	protected CLImate $climate;
