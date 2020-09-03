@@ -51,23 +51,31 @@ class View extends Action {
 	 * @param array $data Data from file
 	 */
 	private function createStats(array $data) {
+		$multiply = 100; // Multiply decimal by
+		$columnCount = 2;
+
 		$lastKey = array_key_last($data['data']);
 		$itemCount = count($data['data']);
 
+		// Calculate difference
 		$found = $data['data'][$lastKey]['totalFound'] - $data['data'][0]['totalFound'];
 		$scanned = $data['data'][$lastKey]['totalScanned'] - $data['data'][0]['totalScanned'];
 
+		// Calculate percentage of scanned URLs found
+ 		$percentFound = round($found / $scanned * $multiply);
+
+		// Calculate mean averages
 		$foundAverage = floor($found / $itemCount);
 		$scannedAverage = floor($scanned / $itemCount);
 
 		$columns = array(
 			'Scanned: ' . number_format($scanned),
-			'Found: ' . number_format($found),
+			'Found: ' . number_format($found) . ' (' . $percentFound . '%)',
 			'Average: ' . number_format($scannedAverage),
 			'Average: ' . number_format($foundAverage),
 		);
 
 		$this->climate->br();
-		$this->climate->columns($columns, 2);
+		$this->climate->columns($columns, $columnCount);
 	}
 }
