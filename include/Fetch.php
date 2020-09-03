@@ -11,6 +11,9 @@ class Fetch {
 	 * Fetch stats for a username
 	 *
 	 * @param string $username URLTeam username
+	 *
+	 * @throws Exception If cURL error occurred.
+	 * @throws Exception If HTTP error occurred.
 	 */
 	public function stats(string $username) {
 		$url = $this->endpoint . $username;
