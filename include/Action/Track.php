@@ -32,6 +32,13 @@ class Track extends AbstractAction {
 	 */
 	private function getDate() {
 
+		if ($this->type === 'daily') {
+			return date(
+				$this->dateFormats[$this->type],
+				strtotime('-1 day')
+			);
+		}
+
 		if ($this->type === 'monthly') {
 			return date(
 				$this->dateFormats[$this->type],
