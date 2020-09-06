@@ -3,6 +3,7 @@
 namespace Action;
 
 use Data;
+use Exception;
 
 class View extends AbstractAction {
 
