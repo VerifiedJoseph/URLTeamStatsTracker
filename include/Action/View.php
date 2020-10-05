@@ -22,6 +22,9 @@ class View extends AbstractAction {
 		$this->createStats(
 			$data->get()
 		);
+
+		$this->climate->br();
+		$this->climate->out('Last mod: ' . $data->getLastMod());
 	}
 
 	/**
