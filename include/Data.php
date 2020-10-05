@@ -53,6 +53,15 @@ class Data {
 	public function get() {
 		return $this->data;
 	}
+	
+	/**
+	 * Return file last modification time
+	 *
+	 * @return string
+	 */
+	public function getLastMod() {
+		return date('Y-m-d H:i:s', filemtime($this->path));
+	}
 
 	/**
 	 * Update data
