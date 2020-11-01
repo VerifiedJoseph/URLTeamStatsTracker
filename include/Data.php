@@ -13,6 +13,15 @@ class Data {
 	/** @param string $type Update type */
 	private string $type = '';
 
+	/** @param int $maxHourlyItems Max number of hourly items to keep */
+	private int	$maxHourlyItems = 24;
+
+	/** @param int $maxDailyItems Max number of daily items to keep */
+	private int	$maxDailyItems = 30;
+
+	/** @param int $maxMonthlyItems Max number of monthly items to keep */
+	private int	$maxMonthlyItems = 12;
+	
 	/**
 	 * Set path
 	 *
@@ -101,24 +110,8 @@ class Data {
 	 * Trim data array to most recent items per type
 	 */
 	private function trim() {
-		$maxHourlyItems = 24;
-		$maxDailyItems = 30;
-		$maxMonthlyItems = 12;
-		$maxItems = 1;
 
-		if ($this->type === 'hourly') {
-			$maxItems = $maxHourlyItems;
-		}
-
-		if ($this->type === 'daily') {
-			$maxItems = $maxDailyItems;
-		}
-
-		if ($this->type === 'monthly') {
-			$maxItems = $maxDailyItems;
-		}
-
-		if (count($this->data['data']) > $maxItems)  {
+		if (count($this->data['data']) > $this->getMaxItemCount())  {
 			unset($this->data['data'][0]);
 
 			$this->data['data'] = array_values($this->data['data']);
@@ -142,6 +135,26 @@ class Data {
 
 		if(fwrite($pointer, $json) === false) {
 			throw new Exception('Failed to write JSON file: ' . $this->path);
+		}
+	}
+	
+	/**
+	 * Returns max item count allowed for an update type
+	 *
+	 * @return int
+	 */
+	private function getMaxItemCount() {
+		
+		if ($this->type === 'hourly') {
+			return $this->maxHourlyItems;
+		}
+
+		if ($this->type === 'daily') {
+			return $this->maxDailyItems;
+		}
+
+		if ($this->type === 'monthly') {
+			return $this->maxDailyItems;
 		}
 	}
 }
