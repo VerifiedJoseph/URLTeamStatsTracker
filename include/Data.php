@@ -14,7 +14,7 @@ class Data {
 	private string $type = '';
 
 	/**
-	 * Load and decode data
+	 * Set path
 	 *
 	 * @param string $username URLTeam username
 	 * @param string $type Update type
