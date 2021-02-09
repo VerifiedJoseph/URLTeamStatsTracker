@@ -37,6 +37,7 @@ class Data {
 	 * Load and decode data
 	 *
 	 * @throws Exception If file open failed
+	 * @throws Exception If json decoding failed
 	 */
 	public function load() {
 
@@ -50,7 +51,13 @@ class Data {
 			$contents = fread($pointer, filesize($this->path));
 			fclose($pointer);
 
-			$this->data = json_decode($contents, true);
+			$data = json_decode($contents, true);
+
+			if (is_null($data) === true) {
+				throw new Exception('Failed to decode JSON file: ' . $this->path);
+			}
+
+			$this->data = $data;
 		}
 	}
 
