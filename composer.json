@@ -1,6 +1,6 @@
 {
     "require": {
-        "php-curl-class/php-curl-class": "^8.8",
+        "php-curl-class/php-curl-class": "^9.0",
         "league/climate": "^3.5"
     }
 }
