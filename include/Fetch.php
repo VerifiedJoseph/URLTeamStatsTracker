@@ -10,7 +10,7 @@ class Fetch {
 	/** @var int $maxRetries Number of max retries */
 	private int $maxRetries = 3;
 
-	/** @var int $retryDelay Number of second to delay each retry */
+	/** @var int $retryDelay Number of seconds to delay each retry */
 	private int $retryDelay = 5;
 
 	/**
@@ -18,8 +18,8 @@ class Fetch {
 	 *
 	 * @param string $username URLTeam username
 	 *
-	 * @throws Exception If cURL error occurred.
-	 * @throws Exception If HTTP error occurred.
+	 * @throws Exception if cURL error occurred.
+	 * @throws Exception if HTTP error occurred.
 	 */
 	public function stats(string $username) {
 		$url = $this->endpoint . $username;
@@ -33,7 +33,7 @@ class Fetch {
 			}
 			return false;
 		});
-		
+
 		$curl->get($url);
 
 		if ($curl->getCurlErrorCode() !== 0) {

@@ -6,7 +6,6 @@ use Data;
 use Fetch;
 
 class Track extends AbstractAction {
-
 	/**
 	 * Run tracker
 	 */

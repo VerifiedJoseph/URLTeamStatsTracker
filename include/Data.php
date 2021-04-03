@@ -21,7 +21,7 @@ class Data {
 
 	/** @param int $maxMonthlyItems Max number of monthly items to keep */
 	private int	$maxMonthlyItems = 12;
-	
+
 	/**
 	 * Set path
 	 *
@@ -36,8 +36,8 @@ class Data {
 	/**
 	 * Load and decode data
 	 *
-	 * @throws Exception If file open failed
-	 * @throws Exception If json decoding failed
+	 * @throws Exception if file open failed
+	 * @throws Exception if json decoding failed
 	 */
 	public function load() {
 
@@ -69,7 +69,7 @@ class Data {
 	public function get() {
 		return $this->data;
 	}
-	
+
 	/**
 	 * Return file last modification time
 	 *
@@ -118,13 +118,13 @@ class Data {
 	 */
 	private function trim() {
 
-		if (count($this->data['data']) > $this->getMaxItemCount())  {
+		if (count($this->data['data']) > $this->getMaxItemCount()) {
 			unset($this->data['data'][0]);
 
 			$this->data['data'] = array_values($this->data['data']);
 		}
 	}
-	
+
 	/**
 	 * Save data to file
 	 *
@@ -144,14 +144,14 @@ class Data {
 			throw new Exception('Failed to write JSON file: ' . $this->path);
 		}
 	}
-	
+
 	/**
 	 * Returns max item count allowed for an update type
 	 *
 	 * @return int
 	 */
 	private function getMaxItemCount() {
-		
+
 		if ($this->type === 'hourly') {
 			return $this->maxHourlyItems;
 		}

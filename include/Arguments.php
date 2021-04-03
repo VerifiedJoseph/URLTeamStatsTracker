@@ -37,9 +37,9 @@ class Arguments {
 	/**
 	 * Check arguments
 	 *
-	 * @throws Exception If no username argument is given
-	 * @throws Exception If invalid username is given
-	 * @throws Exception If no update type argument is given
+	 * @throws Exception if no username argument is given
+	 * @throws Exception if invalid username is given
+	 * @throws Exception if no update type argument is given
 	 */
 	private function checkArguments() {
 		$args = getopt('', $this->optArguments);

@@ -6,7 +6,6 @@ use Data;
 use Exception;
 
 class View extends AbstractAction {
-
 	/**
 	 * Get view
 	 */
