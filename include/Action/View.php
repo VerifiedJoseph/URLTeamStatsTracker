@@ -10,20 +10,26 @@ class View extends AbstractAction {
 	 * Get view
 	 */
 	public function get() {
-		$data = new Data();
-		$data->setPath($this->username, $this->type);
-		$data->load();
 
-		$this->createTable(
-			$data->get()
-		);
+		foreach ($this->users as $user) {
+			$data = new Data();
+			$data->setPath($user, $this->type);
+			$data->load();
 
-		$this->createStats(
-			$data->get()
-		);
+			$this->climate->out('User: ' . $user);
 
-		$this->climate->br();
-		$this->climate->out('Last mod: ' . $data->getLastMod());
+			$this->createTable(
+				$data->get()
+			);
+
+			$this->createStats(
+				$data->get()
+			);
+
+			$this->climate->br();
+			$this->climate->out('Last mod: ' . $data->getLastMod());
+			$this->climate->br();
+		}
 	}
 
 	/**

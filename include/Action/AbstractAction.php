@@ -19,8 +19,8 @@ abstract class AbstractAction {
 		'monthly' => 'Y-m'
 	);
 
-	/** @param string $username URLTeam username */
-	protected string $username = '';
+	/** @param string $users URLTeam users */
+	protected array $users = array();
 
 	/** @param string $type Update type */
 	protected string $type = '';
@@ -33,12 +33,12 @@ abstract class AbstractAction {
 	}
 
 	/**
-	 * Set username
+	 * Set users
 	 *
-	 * @param string $username URLTeam username
+	 * @param array $users URLTeam users
 	 */
-	public function setUsername(string $username) {
-		$this->username = $username;
+	public function setUsers(array $users) {
+		$this->users = $users;
 	}
 
 	/**

@@ -4,7 +4,8 @@
 	Created: 2020-09-01
 
 	Parameters:
-	--username
+	--user		Views stats for a single user.
+	--users		Views stats for multiple users (separate each username with a comma).
 	--hourly
 	--daily
 	--monthly
@@ -21,8 +22,8 @@ try {
 	$arguments = new Arguments();
 
 	$view = new View();
-	$view->setUsername(
-		$arguments->get('username')
+	$view->setUsers(
+		$arguments->get('users')
 	);
 
 	$view->setUpdateType(

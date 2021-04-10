@@ -10,18 +10,21 @@ class Track extends AbstractAction {
 	 * Run tracker
 	 */
 	public function run() {
-		$data = new Data();
-		$data->setPath($this->username, $this->type);
-		$data->load();
 
-		$fetch = new Fetch();
-		$stats = $fetch->stats($this->username);
+		foreach ($this->users as $user) {
+			$data = new Data();
+			$data->setPath($user, $this->type);
+			$data->load();
 
-		$data->update(
-			$this->getDate(),
-			$stats->stats[0],
-			$stats->stats[1]
-		);
+			$fetch = new Fetch();
+			$stats = $fetch->stats($user);
+
+			$data->update(
+				$this->getDate(),
+				$stats->stats[0],
+				$stats->stats[1]
+			);
+		}
 	}
 
 	/**

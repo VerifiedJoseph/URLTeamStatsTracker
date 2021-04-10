@@ -5,11 +5,11 @@ use Helper\Validate;
 class Arguments {
 
 	/** @var array $optArguments */
-	private array $optArguments = array('username:', 'hourly', 'daily', 'monthly');
+	private array $optArguments = array('user:', 'users:', 'hourly', 'daily', 'monthly');
 
 	/** @var array $arguments */
 	private array $arguments = array(
-		'username' => '',
+		'users' => array(),
 		'update' => '',
 	);
 
@@ -37,22 +37,37 @@ class Arguments {
 	/**
 	 * Check arguments
 	 *
-	 * @throws Exception if no username argument is given
-	 * @throws Exception if invalid username is given
+	 * @throws Exception if no user or users argument is given
+	 * @throws Exception if an invalid username is given
 	 * @throws Exception if no update type argument is given
 	 */
 	private function checkArguments() {
 		$args = getopt('', $this->optArguments);
 
-		if (isset($args['username']) === false) {
-			throw new Exception('Username required. Use --username');
+		if (isset($args['user']) === false && isset($args['users']) === false) {
+			throw new Exception("User(s) required. \nUse \"--user\" to track a single user or \"--users\" track multiple users (separate each username with a comma).");
 		}
 
-		if (Validate::username($args['username']) === false) {
-			throw new Exception('Invalid username given.');
+		if (isset($args['user'])) {
+			if (Validate::username($args['user']) === false) {
+				throw new Exception('Invalid username given.');
+			}
+
+			$this->arguments['users'][] = $args['user'];
 		}
 
-		$this->arguments['username'] = $args['username'];
+		if (isset($args['users'])) {
+			$users = explode(',', $args['users']);
+
+			foreach ($users as $user) {
+
+				if (Validate::username($user) === false) {
+					throw new Exception('Invalid username given: ' . $user);
+				}
+
+				$this->arguments['users'][] = trim($user);
+			}
+		}
 
 		if (isset($args['hourly'])) {
 			$this->arguments['update'] = 'hourly';
