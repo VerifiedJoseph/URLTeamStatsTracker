@@ -13,6 +13,6 @@ URLTeamStatsTracker is a PHP script for tracking hourly, daily and monthly user 
 ## Dependencies
 (Via [Composer](https://getcomposer.org/))
 
-`php-curl-class/php-curl-class` [https://github.com/php-curl-class/php-curl-class](https://github.com/php-curl-class/php-curl-class)
-`league/climate` [https://github.com/php-curl-class/php-curl-class](https://github.com/php-curl-class/php-curl-class)
+* `php-curl-class/php-curl-class` [https://github.com/php-curl-class/php-curl-class](https://github.com/php-curl-class/php-curl-class)
+* `league/climate` [https://github.com/thephpleague/climate](https://github.com/thephpleague/climate)
 
