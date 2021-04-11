@@ -14,13 +14,13 @@ class Data {
 	private string $type = '';
 
 	/** @param int $maxHourlyItems Max number of hourly items to keep */
-	private int	$maxHourlyItems = 24;
+	private int $maxHourlyItems = 24;
 
 	/** @param int $maxDailyItems Max number of daily items to keep */
-	private int	$maxDailyItems = 30;
+	private int $maxDailyItems = 30;
 
 	/** @param int $maxMonthlyItems Max number of monthly items to keep */
-	private int	$maxMonthlyItems = 12;
+	private int $maxMonthlyItems = 12;
 
 	/**
 	 * Set path
