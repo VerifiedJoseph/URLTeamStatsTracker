@@ -4,7 +4,7 @@ URLTeamStatsTracker is a PHP command line script for tracking hourly, daily and 
 
 ## Scripts
 * `track.php` - Track stats for one or move users.
-* `view.php` - View tracked state for one or move users.
+* `view.php` - View tracked stats for one or move users.
 
 ## Requirements
 
