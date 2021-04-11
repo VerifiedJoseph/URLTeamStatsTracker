@@ -1,6 +1,10 @@
 # URLTeamStatsTracker 
 
-URLTeamStatsTracker is a PHP script for tracking hourly, daily and monthly user stats for ArchiveTeam's [URLTeam project](https://tracker.archiveteam.org:1338/).
+URLTeamStatsTracker is a PHP command line script for tracking hourly, daily and monthly user stats for ArchiveTeam's [URLTeam project](https://tracker.archiveteam.org:1338/).
+
+## Scripts
+* `track.php` - Track stats for one or move users.
+* `view.php` - View tracked state for one or move users.
 
 ## Requirements
 
