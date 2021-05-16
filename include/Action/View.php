@@ -74,11 +74,11 @@ class View extends AbstractAction {
 		$found = $data['data'][$lastKey]['totalFound'] - $data['data'][0]['totalFound'];
 		$scanned = $data['data'][$lastKey]['totalScanned'] - $data['data'][0]['totalScanned'];
 
+		$percentFound = 0;
+
 		// Calculate percentage of scanned URLs found
 		if ($found > 0) {
 			$percentFound = round($found / $scanned * $multiply);
-		} else {
-			$percentFound = 0;
 		}
 
 		// Calculate mean averages

@@ -87,17 +87,15 @@ class Data {
 	 * @param int $totalScanned Total number of URLs scanned
 	 */
 	public function update(string $time, int $totalFound, int $totalScanned) {
-
+		$found = 0;
+		$scanned = 0;
+		
 		if (empty($this->data['data']) === false) {
 			$lastKey = array_key_last($this->data['data']);
 			$lastItem = $this->data['data'][$lastKey];
 
 			$found = $totalFound - $lastItem['totalFound'];
 			$scanned = $totalScanned - $lastItem['totalScanned'];
-
-		} else {
-			$found = 0;
-			$scanned = 0;
 		}
 
 		$item = array(
