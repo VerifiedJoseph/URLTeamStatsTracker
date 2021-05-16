@@ -47,10 +47,14 @@ class View extends AbstractAction {
 		}
 
 		foreach($data['data'] as $index => $item) {
-			$item['totalScanned'] = number_format($item['totalScanned']);
-			$item['scanned'] = number_format($item['scanned']);
+			$row = array();
+			$row['date'] = $item['date'];
+			$row['found'] = number_format($item['found']);
+			$row['total_found'] = number_format($item['totalFound']);
+			$row['scanned'] = number_format($item['scanned']);
+			$row['total_scanned'] = number_format($item['totalScanned']);
 
-			$table[] = $item;
+			$table[] = $row;
 		}
 
 		$this->climate->table($table);
