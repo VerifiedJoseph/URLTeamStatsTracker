@@ -47,8 +47,6 @@ class View extends AbstractAction {
 		}
 
 		foreach($data['data'] as $index => $item) {
-			$item['totalFound'] = number_format($item['totalFound']);
-			$item['found'] = number_format($item['found']);
 			$item['totalScanned'] = number_format($item['totalScanned']);
 			$item['scanned'] = number_format($item['scanned']);
 
