@@ -1,6 +1,6 @@
 <?php
 /*
-	View stats for a tracked URLTeam user
+	View stats for tracked URLTeam users
 	Created: 2020-09-01
 
 	Parameters:
