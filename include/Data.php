@@ -1,5 +1,7 @@
 <?php
 
+use Helper\File;
+
 class Data {
 
 	/** @var string $path Path of data file */
@@ -36,21 +38,12 @@ class Data {
 	/**
 	 * Load and decode data
 	 *
-	 * @throws Exception if file open failed
 	 * @throws Exception if json decoding failed
 	 */
 	public function load() {
 
-		if (file_exists($this->path) === true) {
-			$pointer = fopen($this->path, 'r');
-
-			if($pointer === false) {
-				throw new Exception('Failed to open JSON file: ' . $this->path);
-			}
-
-			$contents = fread($pointer, filesize($this->path));
-			fclose($pointer);
-
+		if (File::exists($this->path) === true) {
+			$contents = File::read($this->path);
 			$data = json_decode($contents, true);
 
 			if (is_null($data) === true) {
@@ -125,22 +118,11 @@ class Data {
 
 	/**
 	 * Save data to file
-	 *
-	 * @throws Exception If file open failed
-	 * @throws Exception If file write failed
 	 */
 	private function save() {
-		$pointer = fopen($this->path, 'w');
-
-		if($pointer === false) {
-			throw new Exception('Failed to open JSON file: ' . $this->path);
-		}
-
 		$json = json_encode($this->data);
 
-		if(fwrite($pointer, $json) === false) {
-			throw new Exception('Failed to write JSON file: ' . $this->path);
-		}
+		File::write($this->path, $json);
 	}
 
 	/**
