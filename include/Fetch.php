@@ -41,7 +41,7 @@ class Fetch {
 		}
 
 		if ($curl->getHttpStatusCode() !== 200) {
-			throw new Exception('Failed to fetch: ' . $url);
+			throw new Exception('Failed to fetch: ' . $url . ' (' . $curl->getHttpStatusCode() . ')');
 		}
 
 		return $curl->response;
