@@ -27,7 +27,7 @@ try {
 	);
 
 	$track->setUpdateType(
-		$arguments->get('update')
+		$arguments->get('updateType')
 	);
 
 	$track->run();

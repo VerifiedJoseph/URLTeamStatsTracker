@@ -10,7 +10,7 @@ class Arguments {
 	/** @var array $arguments */
 	private array $arguments = array(
 		'users' => array(),
-		'update' => '',
+		'updateType' => '',
 	);
 
 	/**
@@ -60,7 +60,6 @@ class Arguments {
 			$users = explode(',', $args['users']);
 
 			foreach ($users as $user) {
-
 				if (Validate::username($user) === false) {
 					throw new Exception('Invalid username given: ' . $user);
 				}
@@ -70,13 +69,13 @@ class Arguments {
 		}
 
 		if (isset($args['hourly'])) {
-			$this->arguments['update'] = 'hourly';
+			$this->arguments['updateType'] = 'hourly';
 
 		} elseif (isset($args['daily'])) {
-			$this->arguments['update'] = 'daily';
+			$this->arguments['updateType'] = 'daily';
 
 		} elseif (isset($args['monthly'])) {
-			$this->arguments['update'] = 'monthly';
+			$this->arguments['updateType'] = 'monthly';
 
 		} else {
 			throw new Exception('No update type given. Use --hourly, --daily or --monthly');

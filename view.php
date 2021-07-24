@@ -27,7 +27,7 @@ try {
 	);
 
 	$view->setUpdateType(
-		$arguments->get('update')
+		$arguments->get('updateType')
 	);
 
 	$view->get();
