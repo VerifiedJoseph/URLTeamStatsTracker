@@ -134,10 +134,8 @@ class Data {
 		switch($this->type) {
 			case 'daily':
 				return $this->maxDailyItems;
-				break;
 			case 'monthly':
 				return $this->maxMonthlyItems;
-				break;
 			default:
 				return $this->maxHourlyItems;
 		}
