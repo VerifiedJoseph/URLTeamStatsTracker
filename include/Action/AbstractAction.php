@@ -6,7 +6,7 @@ use League\CLImate\CLImate;
 
 abstract class AbstractAction {
 
-	/** @var object $climate CLImate instance */
+	/** @var CLImate $climate CLImate instance */
 	protected CLImate $climate;
 
 	/** @var array $updateTypes Update types */

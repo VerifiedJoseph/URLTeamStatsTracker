@@ -4,7 +4,7 @@ use Curl\Curl;
 
 class Fetch {
 
-	/** @var array $endpoint Stats endpoint */
+	/** @var string $endpoint Stats endpoint */
 	private string $endpoint = 'https://tracker.archiveteam.org:1338/api/stats/';
 
 	/** @var int $maxRetries Number of max retries */

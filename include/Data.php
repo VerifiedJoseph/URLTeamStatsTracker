@@ -131,17 +131,15 @@ class Data {
 	 * @return int
 	 */
 	private function getMaxItemCount() {
-
-		if ($this->type === 'hourly') {
-			return $this->maxHourlyItems;
-		}
-
-		if ($this->type === 'daily') {
-			return $this->maxDailyItems;
-		}
-
-		if ($this->type === 'monthly') {
-			return $this->maxDailyItems;
+		switch($this->type) {
+			case 'daily':
+				return $this->maxDailyItems;
+				break;
+			case 'monthly':
+				return $this->maxMonthlyItems;
+				break;
+			default:
+				return $this->maxHourlyItems;
 		}
 	}
 }
