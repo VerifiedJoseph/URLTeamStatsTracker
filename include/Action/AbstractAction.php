@@ -9,17 +9,17 @@ abstract class AbstractAction {
 	/** @var CLImate $climate CLImate instance */
 	protected CLImate $climate;
 
-	/** @var array $updateTypes Update types */
+	/** @var array<int, string> $updateTypes Update types */
 	protected array $updateTypes = array('hourly', 'daily', 'monthly');
 
-	/** @var array $dateFormats Date formats for update types */
+	/** @var array<string, string> $dateFormats Date formats for update types */
 	protected array $dateFormats = array(
 		'hourly' => 'Y-m-d H',
 		'daily' => 'Y-m-d',
 		'monthly' => 'Y-m'
 	);
 
-	/** @param string $users URLTeam users */
+	/** @param array $users URLTeam users */
 	protected array $users = array();
 
 	/** @param string $type Update type */
@@ -28,16 +28,18 @@ abstract class AbstractAction {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->climate = new CLImate();
 	}
 
 	/**
 	 * Set users
 	 *
-	 * @param array $users URLTeam users
+	 * @param array<int, string> $users URLTeam users
 	 */
-	public function setUsers(array $users) {
+	public function setUsers(array $users): void
+	{
 		$this->users = $users;
 	}
 
@@ -46,7 +48,8 @@ abstract class AbstractAction {
 	 *
 	 * @param string $type Update type
 	 */
-	public function setUpdateType(string $type) {
+	public function setUpdateType(string $type): void
+	{
 		$this->type = $type;
 	}
 }
