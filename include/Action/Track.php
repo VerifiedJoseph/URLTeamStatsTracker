@@ -5,7 +5,8 @@ namespace Action;
 use Data;
 use Fetch;
 
-class Track extends AbstractAction {
+class Track extends AbstractAction
+{
 	/**
 	 * Run tracker
 	 */

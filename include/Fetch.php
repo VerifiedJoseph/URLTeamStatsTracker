@@ -2,8 +2,8 @@
 
 use Curl\Curl;
 
-class Fetch {
-
+class Fetch
+{
 	/** @var string $endpoint Stats endpoint */
 	private string $endpoint = 'https://tracker.archiveteam.org:1338/api/stats/';
 
@@ -18,10 +18,13 @@ class Fetch {
 	 *
 	 * @param string $username URLTeam username
 	 *
+	 * @return mixed
+	 * 
 	 * @throws Exception if cURL error occurred.
 	 * @throws Exception if HTTP error occurred.
 	 */
-	public function stats(string $username) {
+	public function stats(string $username): mixed
+	{
 		$url = $this->endpoint . $username;
 
 		$curl = new Curl();

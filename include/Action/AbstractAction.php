@@ -4,8 +4,8 @@ namespace Action;
 
 use League\CLImate\CLImate;
 
-abstract class AbstractAction {
-
+abstract class AbstractAction
+{
 	/** @var CLImate $climate CLImate instance */
 	protected CLImate $climate;
 
@@ -19,10 +19,10 @@ abstract class AbstractAction {
 		'monthly' => 'Y-m'
 	);
 
-	/** @param array $users URLTeam users */
+	/** @var array<int, string> $users URLTeam users */
 	protected array $users = array();
 
-	/** @param string $type Update type */
+	/** @var string $type Update type */
 	protected string $type = '';
 
 	/**

@@ -2,12 +2,12 @@
 
 use Helper\Validate;
 
-class Arguments {
-
-	/** @var array $optArguments */
+class Arguments
+{
+	/** @var array<int, string> $optArguments */
 	private array $optArguments = array('user:', 'users:', 'hourly', 'daily', 'monthly');
 
-	/** @var array $arguments */
+	/** @var array<string, mixed> $arguments */
 	private array $arguments = array(
 		'users' => array(),
 		'updateType' => '',
@@ -16,7 +16,8 @@ class Arguments {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->checkArguments();
 	}
 
@@ -26,7 +27,8 @@ class Arguments {
 	 * @param string $key Argument key
 	 * @return mixed
 	 */
-	public function get(string $key) {
+	public function get(string $key): mixed
+	{
 		if (isset($this->arguments[$key])) {
 			return $this->arguments[$key];
 		}
@@ -41,23 +43,26 @@ class Arguments {
 	 * @throws Exception if an invalid username is given
 	 * @throws Exception if no update type argument is given
 	 */
-	private function checkArguments() {
-		$args = getopt('', $this->optArguments);
+	private function checkArguments(): void
+	{
+		$args = (array) getopt('', $this->optArguments);
 
 		if (isset($args['user']) === false && isset($args['users']) === false) {
 			throw new Exception("User(s) required. \nUse \"--user\" to track a single user or \"--users\" track multiple users (separate each username with a comma).");
 		}
 
 		if (isset($args['user'])) {
-			if (Validate::username($args['user']) === false) {
+			$user = strval($args['user']);
+
+			if (Validate::username($user) === false) {
 				throw new Exception('Invalid username given.');
 			}
 
-			$this->arguments['users'][] = $args['user'];
+			$this->arguments['users'][] = $user;
 		}
 
 		if (isset($args['users'])) {
-			$users = explode(',', $args['users']);
+			$users = explode(',', strval($args['user']));
 
 			foreach ($users as $user) {
 				if (Validate::username($user) === false) {
