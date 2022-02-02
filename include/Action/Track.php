@@ -5,12 +5,13 @@ namespace Action;
 use Data;
 use Fetch;
 
-class Track extends AbstractAction {
+class Track extends AbstractAction
+{
 	/**
 	 * Run tracker
 	 */
-	public function run() {
-
+	public function run(): void
+	{
 		foreach ($this->users as $user) {
 			$data = new Data();
 			$data->setPath($user, $this->type);
@@ -32,22 +33,21 @@ class Track extends AbstractAction {
 	 *
 	 * @return string
 	 */
-	private function getDate() {
-
-		if ($this->type === 'daily') {
-			return date(
-				$this->dateFormats[$this->type],
-				strtotime('-1 day')
-			);
+	private function getDate(): string
+	{
+		switch($this->type) {
+			case 'daily':
+				return date(
+					$this->dateFormats[$this->type],
+					strtotime('-1 day')
+				);
+			case 'monthly':
+				return date(
+					$this->dateFormats[$this->type],
+					strtotime('-1 month')
+				);
+			default:
+				return date($this->dateFormats[$this->type]);
 		}
-
-		if ($this->type === 'monthly') {
-			return date(
-				$this->dateFormats[$this->type],
-				strtotime('-1 month')
-			);
-		}
-
-		return date($this->dateFormats[$this->type]);
 	}
 }

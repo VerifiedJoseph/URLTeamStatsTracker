@@ -7,10 +7,8 @@ class Data {
 	/** @var string $path Path of data file */
 	private string $path = '';
 
-	/** @var array $data */
-	private array $data = array(
-		'data' => array()
-	);
+	/** @var stdClass $data */
+	private stdClass $data;
 
 	/** @param string $type Update type */
 	private string $type = '';
@@ -30,7 +28,8 @@ class Data {
 	 * @param string $username URLTeam username
 	 * @param string $type Update type
 	 */
-	public function setPath(string $username, string $type) {
+	public function setPath(string $username, string $type): void
+	{
 		$this->type = $type;
 		$this->path = 'json/' . $username . '-' . $type . '.json';
 	}
@@ -40,26 +39,29 @@ class Data {
 	 *
 	 * @throws Exception if json decoding failed
 	 */
-	public function load() {
+	public function load(): void
+	{
+		$this->data = (object) [];
 
 		if (File::exists($this->path) === true) {
 			$contents = File::read($this->path);
-			$data = json_decode($contents, true);
+			$data = json_decode($contents);
 
 			if (is_null($data) === true) {
 				throw new Exception('Failed to decode JSON file: ' . $this->path);
 			}
 
-			$this->data = $data;
+			$this->data = (object) $data;
 		}
 	}
 
 	/**
 	 * Return data
 	 *
-	 * @return array
+	 * @return stdClass
 	 */
-	public function get() {
+	public function get(): stdClass
+	{
 		return $this->data;
 	}
 
@@ -68,8 +70,9 @@ class Data {
 	 *
 	 * @return string
 	 */
-	public function getLastMod() {
-		return date('Y-m-d H:i:s', filemtime($this->path));
+	public function getLastMod(): string
+	{
+		return date('Y-m-d H:i:s', (int) filemtime($this->path));
 	}
 
 	/**
@@ -79,26 +82,26 @@ class Data {
 	 * @param int $totalFound Total number of URLs found
 	 * @param int $totalScanned Total number of URLs scanned
 	 */
-	public function update(string $time, int $totalFound, int $totalScanned) {
+	public function update(string $time, int $totalFound, int $totalScanned): void
+	{
 		$found = 0;
 		$scanned = 0;
 		
-		if (empty($this->data['data']) === false) {
-			$lastKey = array_key_last($this->data['data']);
-			$lastItem = $this->data['data'][$lastKey];
+		if (empty($this->data->stats) === false) {
+			$lastKey = array_key_last($this->data->stats);
+			$lastItem = $this->data->stats[$lastKey];
 
-			$found = $totalFound - $lastItem['totalFound'];
-			$scanned = $totalScanned - $lastItem['totalScanned'];
+			$found = $totalFound - $lastItem->totalFound;
+			$scanned = $totalScanned - $lastItem->totalScanned;
 		}
 
-		$item = array(
+		$this->data->stats[] = (object) [
 			'date' => $time,
 			'totalFound' => $totalFound,
 			'found' => $found,
 			'totalScanned' => $totalScanned,
 			'scanned' => $scanned,
-		);
-		$this->data['data'][] = $item;
+		];;
 
 		$this->trim();
 		$this->save();
@@ -107,20 +110,21 @@ class Data {
 	/**
 	 * Trim data array to most recent items per type
 	 */
-	private function trim() {
+	private function trim(): void
+	{
+		if (count($this->data->stats) > $this->getMaxItemCount()) {
+			unset($this->data->stats[0]);
 
-		if (count($this->data['data']) > $this->getMaxItemCount()) {
-			unset($this->data['data'][0]);
-
-			$this->data['data'] = array_values($this->data['data']);
+			$this->data->stats = array_values($this->data->stats);
 		}
 	}
 
 	/**
 	 * Save data to file
 	 */
-	private function save() {
-		$json = json_encode($this->data);
+	private function save(): void
+	{
+		$json = (string) json_encode($this->data);
 
 		File::write($this->path, $json);
 	}
@@ -130,18 +134,15 @@ class Data {
 	 *
 	 * @return int
 	 */
-	private function getMaxItemCount() {
-
-		if ($this->type === 'hourly') {
-			return $this->maxHourlyItems;
-		}
-
-		if ($this->type === 'daily') {
-			return $this->maxDailyItems;
-		}
-
-		if ($this->type === 'monthly') {
-			return $this->maxDailyItems;
+	private function getMaxItemCount(): int
+	{
+		switch($this->type) {
+			case 'daily':
+				return $this->maxDailyItems;
+			case 'monthly':
+				return $this->maxMonthlyItems;
+			default:
+				return $this->maxHourlyItems;
 		}
 	}
 }

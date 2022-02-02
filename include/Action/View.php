@@ -3,14 +3,16 @@
 namespace Action;
 
 use Data;
+use stdClass;
 use Exception;
 
-class View extends AbstractAction {
+class View extends AbstractAction
+{
 	/**
 	 * Get view
 	 */
-	public function get() {
-
+	public function get(): void
+	{
 		foreach ($this->users as $user) {
 			$data = new Data();
 			$data->setPath($user, $this->type);
@@ -35,24 +37,25 @@ class View extends AbstractAction {
 	/**
 	 * Create table using CLImate
 	 *
-	 * @param array $data Data from file
+	 * @param stdClass $data Data from file
 	 *
 	 * @throws Exception if data array is empty
 	 */
-	private function createTable(array $data) {
-		$table = array();
-
-		if (empty($data['data'])) {
+	private function createTable(stdClass $data): void
+	{
+		if (isset($data->stats) === false) {
 			throw new Exception('No data to display');
 		}
 
-		foreach($data['data'] as $index => $item) {
+		$table = array();
+
+		foreach($data->stats as $item) {
 			$row = array();
-			$row['date'] = $item['date'];
-			$row['found'] = number_format($item['found']);
-			$row['total_found'] = number_format($item['totalFound']);
-			$row['scanned'] = number_format($item['scanned']);
-			$row['total_scanned'] = number_format($item['totalScanned']);
+			$row['date'] = $item->date;
+			$row['found'] = number_format($item->found);
+			$row['total_found'] = number_format($item->totalFound);
+			$row['scanned'] = number_format($item->scanned);
+			$row['total_scanned'] = number_format($item->totalScanned);
 
 			$table[] = $row;
 		}
@@ -63,18 +66,19 @@ class View extends AbstractAction {
 	/**
 	 * Create, output averages and other stats
 	 *
-	 * @param array $data Data from file
+	 * @param stdClass $data Data from file
 	 */
-	private function createStats(array $data) {
+	private function createStats(\stdClass $data): void
+	{
 		$multiply = 100; // Multiply decimal by
 		$columnCount = 2;
 
-		$lastKey = array_key_last($data['data']);
-		$itemCount = count($data['data']);
+		$lastKey = array_key_last($data->stats);
+		$itemCount = count($data->stats);
 
 		// Calculate difference
-		$found = $data['data'][$lastKey]['totalFound'] - $data['data'][0]['totalFound'];
-		$scanned = $data['data'][$lastKey]['totalScanned'] - $data['data'][0]['totalScanned'];
+		$found = $data->stats[$lastKey]->totalFound - $data->stats[0]->totalFound;
+		$scanned = $data->stats[$lastKey]->totalScanned - $data->stats[0]->totalScanned;
 
 		$percentFound = 0;
 

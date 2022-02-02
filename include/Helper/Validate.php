@@ -2,8 +2,8 @@
 
 namespace Helper;
 
-class Validate {
-
+class Validate 
+{
 	/** @var string $usernameRegex Username validation regex */
 	private static string $usernameRegex = '/^([A-Za-z0-9_-]+)$/';
 
@@ -13,7 +13,8 @@ class Validate {
 	 * @param string $username URLTeam username
 	 * @return boolean
 	 */
-	public static function username(string $username) {
+	public static function username(string $username): bool
+	{
 		if (preg_match(self::$usernameRegex, $username)) {
 			return true;
 		}
