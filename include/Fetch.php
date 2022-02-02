@@ -19,7 +19,7 @@ class Fetch
 	 * @param string $username URLTeam username
 	 *
 	 * @return mixed
-	 * 
+	 *
 	 * @throws Exception if cURL error occurred.
 	 * @throws Exception if HTTP error occurred.
 	 */

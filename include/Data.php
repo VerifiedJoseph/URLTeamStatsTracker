@@ -86,7 +86,7 @@ class Data {
 	{
 		$found = 0;
 		$scanned = 0;
-		
+
 		if (empty($this->data->stats) === false) {
 			$lastKey = array_key_last($this->data->stats);
 			$lastItem = $this->data->stats[$lastKey];

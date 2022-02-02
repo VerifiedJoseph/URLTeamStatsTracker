@@ -2,7 +2,7 @@
 
 namespace Helper;
 
-class Validate 
+class Validate
 {
 	/** @var string $usernameRegex Username validation regex */
 	private static string $usernameRegex = '/^([A-Za-z0-9_-]+)$/';
