@@ -20,14 +20,6 @@
       <property name="ignoreNewlines" value="true"/>
     </properties>
   </rule>
-  <!-- One line should not have more than 80 characters -->
-  <!-- One line must never exceed 120 characters -->
-  <rule ref="Generic.Files.LineLength">
-    <properties>
-      <property name="lineLimit" value="80"/>
-      <property name="absoluteLineLimit" value="120"/>
-    </properties>
-  </rule>
   <!-- When calling a function: -->
   <!-- Do not add a space before the opening parenthesis -->
   <!-- Do not add a space after the opening parenthesis -->
