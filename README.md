@@ -28,7 +28,7 @@ For multiple users:
 
 ## Requirements
 
-* PHP >= 7.4
+* PHP >= 8.0
 * [Composer](https://getcomposer.org/)
 * PHP Extensions:
 	* [`JSON`](https://www.php.net/manual/en/book.json.php)
