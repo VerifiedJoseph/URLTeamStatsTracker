@@ -27,7 +27,7 @@ jobs:
         tools: phpstan
 
     - name: "Validate composer.json and composer.lock"
-      run: "composer validate --strict"
+      run: "composer validate --no-check-publish --strict"
 
     - name: Install dependencies with composer
       run: composer install --prefer-dist
