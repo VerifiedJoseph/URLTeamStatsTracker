@@ -1,7 +1,6 @@
 <?php
 /*
 	View stats for tracked URLTeam users
-	Created: 2020-09-01
 
 	Parameters:
 	--user		Views stats for a single user.
@@ -14,7 +13,6 @@
 use Action\View;
 use League\CLImate\CLImate;
 
-require __DIR__ . '/autoload.php';
 require __DIR__ . '/vendor/autoload.php';
 
 try {

@@ -1,7 +1,6 @@
 <?php
 /*
 	Track stats for URLTeam users
-	Created: 2020-09-01
 
 	Parameters:
 	--user		Track a single user.
@@ -14,7 +13,6 @@
 use Action\Track;
 use League\CLImate\CLImate;
 
-require __DIR__ . '/autoload.php';
 require __DIR__ . '/vendor/autoload.php';
 
 try {

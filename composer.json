@@ -7,6 +7,9 @@
         "phpstan/phpstan": "^1.2",
         "squizlabs/php_codesniffer": "^3.7"
     },
+    "autoload": {
+        "classmap": ["include/"]
+    },
     "scripts": {
         "lint": "phpstan && phpcs ."
     }
