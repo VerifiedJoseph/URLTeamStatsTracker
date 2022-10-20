@@ -1,7 +1,6 @@
 <?php
 /*
 	Track stats for URLTeam users
-	Created: 2020-09-01
 
 	Parameters:
 	--user		Track a single user.
