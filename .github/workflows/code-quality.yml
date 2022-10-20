@@ -23,8 +23,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
-        tools: phpstan
+        php-version: '8.0'
 
     - name: "Validate composer.json and composer.lock"
       run: "composer validate --no-check-publish"
@@ -33,7 +32,7 @@ jobs:
       run: composer install --prefer-dist
 
     - name: Run PHPStan
-      run: phpstan analyse -c phpstan.neon
+      run: ./vendor/bin/phpstan analyse
 
   phpcs:
     runs-on: ubuntu-latest
@@ -44,8 +43,11 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
-        tools: cs2pr, phpcs
+        php-version: '8.0'
+        tools: cs2pr
+
+    - name: Install dependencies with composer
+      run: composer install --prefer-dist
 
     - name: Run phpcs
-      run: phpcs include --report=checkstyle | cs2pr
+      run: ./vendor/bin/phpcs . --report=checkstyle | cs2pr
