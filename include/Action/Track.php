@@ -29,7 +29,7 @@ class Track extends AbstractAction
 	}
 
 	/**
-	 * Returns formated date
+	 * Returns formatted date
 	 *
 	 * @return string
 	 */
