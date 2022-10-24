@@ -62,7 +62,7 @@ class Arguments
 		}
 
 		if (isset($args['users'])) {
-			$users = explode(',', strval($args['user']));
+			$users = explode(',', strval($args['users']));
 
 			foreach ($users as $user) {
 				if (Validate::username($user) === false) {
