@@ -73,16 +73,16 @@
         },
         {
             "name": "php-curl-class/php-curl-class",
-            "version": "9.8.0",
+            "version": "9.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-curl-class/php-curl-class.git",
-                "reference": "bf54ee6d9a6551dcdaff722ba83551ad8ef68698"
+                "reference": "5d87676a3a7f83dd33d65f3c8d97f36679305193"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/bf54ee6d9a6551dcdaff722ba83551ad8ef68698",
-                "reference": "bf54ee6d9a6551dcdaff722ba83551ad8ef68698",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/5d87676a3a7f83dd33d65f3c8d97f36679305193",
+                "reference": "5d87676a3a7f83dd33d65f3c8d97f36679305193",
                 "shasum": ""
             },
             "require": {
@@ -142,9 +142,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-curl-class/php-curl-class/issues",
-                "source": "https://github.com/php-curl-class/php-curl-class/tree/9.8.0"
+                "source": "https://github.com/php-curl-class/php-curl-class/tree/9.14.3"
             },
-            "time": "2022-10-01T01:32:07+00:00"
+            "time": "2023-03-13T18:02:56+00:00"
         },
         {
             "name": "psr/log",
